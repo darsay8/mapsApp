@@ -55,5 +55,11 @@
   <array>
     <string>Ionicons.ttf</string>
   </array>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>App want to use location</string>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>App want to use location</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>App want use location when in use</string>
 </dict>
 </plist>
