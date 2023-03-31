@@ -2,6 +2,7 @@ import {create} from 'zustand';
 import {createJSONStorage, devtools, persist} from 'zustand/middleware';
 import {
   check,
+  openSettings,
   PERMISSIONS,
   PermissionStatus,
   request,
@@ -32,8 +33,10 @@ export const usePermissionsStore = create<IPermissionsState>()(
               PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
             );
           }
+          if (permissionStatus === 'blocked') {
+            openSettings();
+          }
           set({locationStatus: permissionStatus});
-          console.log('here', permissionStatus);
         },
         checkLocationPermission: () => async () => {
           let permissionStatus: PermissionStatus;
