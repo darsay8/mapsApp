@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     marginTop: notch ? 48 : 24,
     marginBottom: 8,
   },
-
   absoluteTop: {
     top: notch ? 48 : 24,
   },
