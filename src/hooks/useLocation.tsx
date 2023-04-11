@@ -7,21 +7,29 @@ const useLocation = () => {
   const [initialPosition, setInitialPosition] = useState<ILocation>();
 
   useEffect(() => {
-    Geolocation.getCurrentPosition(
-      ({coords}) => {
-        setInitialPosition({
-          latitude: coords.latitude,
-          longitude: coords.longitude,
-        });
-        setHasLocation(true);
-      },
-      err => console.log({err}),
-      {
-        enableHighAccuracy: true,
-      },
-    );
+    getCurrentLocation().then(location => {
+      setInitialPosition(location);
+      setHasLocation(true);
+    });
   }, []);
 
-  return {hasLocation, initialPosition};
+  const getCurrentLocation = (): Promise<ILocation> => {
+    return new Promise((resolve, reject) => {
+      Geolocation.getCurrentPosition(
+        ({coords}) => {
+          resolve({
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+          });
+        },
+        err => reject({err}),
+        {
+          enableHighAccuracy: true,
+        },
+      );
+    });
+  };
+
+  return {hasLocation, initialPosition, getCurrentLocation};
 };
 export default useLocation;
