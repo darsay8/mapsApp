@@ -2,12 +2,7 @@ import {Text, View, StyleSheet} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {styles} from '../theme/theme';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MapView, {
-  PROVIDER_GOOGLE,
-  enableLatestRenderer,
-} from 'react-native-maps';
-
-enableLatestRenderer();
+import Map from '../components/Map';
 
 const MapScreen = () => {
   const {colors} = useTheme();
@@ -27,15 +22,7 @@ const MapScreen = () => {
         </View>
         <View style={styles.section}>
           <View style={mapStyles.container}>
-            <MapView
-              // provider={PROVIDER_GOOGLE}
-              style={mapStyles.map}
-              region={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.0121,
-              }}></MapView>
+            <Map />
           </View>
         </View>
       </View>
@@ -55,9 +42,5 @@ const mapStyles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     height: 600,
     alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 25,
   },
 });
